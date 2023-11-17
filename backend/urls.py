@@ -21,12 +21,14 @@ from main_app import views
 
 router = routers.DefaultRouter()
 router.register(r'users', views.UserViewSet)
-router.register(r'groups', views.GroupViewSet)
-router.register(r'cats', views.CatViewSet)
-router.register(r'dogs', views.DogViewSet)
-router.register(r'birds', views.BirdViewSet)
-router.register(r'physioform', views.Physio_FormViewSet)
-router.register(r'treatment', views.TreatmentViewSet)
+router.register(r'physioformadd', views.Physio_FormAddViewSet, basename="addphysioform")
+router.register(r'physioformupdate', views.Physio_FormUpdateViewSet, basename="updatephysioform")
+router.register(r'physioformdelete', views.Physio_FormDeleteViewSet)
+router.register(r'physioform', views.Physio_FormViewSet, basename="physioform")
+router.register(r'treatmentsadd', views.TreatmentAddViewSet, basename="addtreatment")
+router.register(r'treatmentsdelete', views.TreatmentDeleteViewSet, basename="deletetreatment")
+router.register(r'treatmentsupdate', views.TreatmentUpdateViewSet, basename="updatetreatment")
+router.register(r'treatments', views.TreatmentViewSet, basename="treatment")
 
 urlpatterns = [
     path('admin/', admin.site.urls),

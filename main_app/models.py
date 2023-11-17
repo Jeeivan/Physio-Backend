@@ -18,31 +18,7 @@ area = (
 )
 
 
-# Create your models here.
-class Cat(models.Model):
-  name = models.CharField(max_length=100)
-  breed = models.CharField(max_length=100)
-  description = models.TextField(max_length=250)
-  age = models.IntegerField()
-  def __str__(self):
-    return f'{self.name} ({self.id})'
-  
-class Dog(models.Model):
-  name = models.CharField(max_length=100)
-  breed = models.CharField(max_length=100)
-  description = models.TextField(max_length=250)
-  age = models.IntegerField()
-  def __str__(self):
-    return f'{self.name} ({self.id})'
-
-class Bird(models.Model):
-  name = models.CharField(max_length=100)
-  breed = models.CharField(max_length=100)
-  description = models.TextField(max_length=250)
-  age = models.IntegerField()
-  def __str__(self):
-    return f'{self.name} ({self.id})'
-  
+# Create your models here.  
 class Physio_Form(models.Model):
   date = models.DateField()
   body_part = models.CharField(
