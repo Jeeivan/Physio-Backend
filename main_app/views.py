@@ -1,6 +1,7 @@
 from django.contrib.auth.models import User
 from .models import Physio_Form, Treatment
 from rest_framework import viewsets, permissions, generics
+from rest_framework.generics import ListAPIView
 from rest_framework.response import Response
 from rest_framework import status
 from rest_framework.views import APIView
@@ -42,6 +43,14 @@ class Physio_FormViewSet(viewsets.ReadOnlyModelViewSet):
     queryset = Physio_Form.objects.all()
     serializer_class = Physio_FormSerializer
     permission_classes = [permissions.IsAuthenticated]
+
+class Physio_FormListByUserView(ListAPIView):
+    serializer_class = Physio_FormSerializer
+    permission_classes = [permissions.IsAuthenticated]
+
+    def get_queryset(self):
+        user_id = self.kwargs['user_id']  # Assuming 'user_id' is the parameter in your URL
+        return Physio_Form.objects.filter(user_id=user_id)
 
 class Physio_FormAddViewSet(viewsets.ModelViewSet):
     queryset = Physio_Form.objects.all()
