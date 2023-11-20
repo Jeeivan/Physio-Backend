@@ -83,6 +83,14 @@ class TreatmentViewSet(viewsets.ReadOnlyModelViewSet):
     serializer_class = TreatmentSerializer
     permission_classes = [permissions.IsAuthenticated]
 
+class TreatmentListByPhysioFormView(ListAPIView):
+    serializer_class = TreatmentSerializer
+    permission_classes = [IsAuthenticated]
+
+    def get_queryset(self):
+        physio_form_id = self.kwargs['physio_form_id']
+        return Treatment.objects.filter(physio_form_id=physio_form_id)
+
 class TreatmentAddViewSet(viewsets.ModelViewSet):
     queryset = Treatment.objects.all()
     serializer_class = TreatmentSerializer

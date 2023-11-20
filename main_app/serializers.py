@@ -26,7 +26,7 @@ class UserSerializer(serializers.HyperlinkedModelSerializer):
         return attrs
     class Meta:
         model = User
-        fields = ['url', 'username', 'email', 'password', 'password_confirmation']
+        fields = ['url', 'username', 'email', 'password', 'password_confirmation', 'is_staff']
 
 class Physio_FormSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:

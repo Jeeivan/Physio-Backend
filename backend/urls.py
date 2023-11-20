@@ -39,6 +39,7 @@ urlpatterns = [
     path('logout/', views.LogoutView.as_view(), name ='logout'),
     path('signup/', views.CreateUser.as_view(), name ='signup'),
     path('physioform/user/<int:user_id>/', views.Physio_FormListByUserView.as_view(), name='physioform-list-by-user'),
+    path('treatments/physioform/<int:physio_form_id>/', views.TreatmentListByPhysioFormView.as_view(), name='treatments-list-by-physioform'),
     path('', include(router.urls)),
     path('api-auth/', include('rest_framework.urls', namespace='rest_framework'))
 ]
