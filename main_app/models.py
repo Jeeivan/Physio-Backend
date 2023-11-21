@@ -39,6 +39,6 @@ class Physio_Form(models.Model):
   user = models.ForeignKey(User, on_delete=models.CASCADE)
 
 class Treatment(models.Model):
-  date = models.DateField()
+  date = models.DateField(auto_now_add=True)
   response = models.CharField()
   physio_form_id = models.ForeignKey(Physio_Form, on_delete=models.CASCADE)
