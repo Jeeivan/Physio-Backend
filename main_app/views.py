@@ -58,7 +58,7 @@ class Physio_FormAddViewSet(viewsets.ModelViewSet):
     permission_classes = [permissions.IsAuthenticated]
     
     def perform_create(self, serializer):
-        serializer.save()
+        serializer.save(treatment_complete=False)
 
 class Physio_FormUpdateViewSet(viewsets.ModelViewSet):
     queryset = Physio_Form.objects.all()

@@ -38,7 +38,8 @@ DEBUG = True
 
 ALLOWED_HOSTS = [
     'physio-backend-production.up.railway.app',
-    'physio-backend.railway.internal'
+    'physio-backend.railway.internal',
+    'localhost',
 ]
 
 

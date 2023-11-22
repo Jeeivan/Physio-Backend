@@ -21,7 +21,8 @@ area = (
 # Create your models here.  
 class Physio_Form(models.Model):
   date = models.DateField(auto_now_add=True)
-  time = models.IntegerField("Length of time of condition (months)")
+  body_part = models.CharField(max_length=100)
+  time = models.CharField(max_length=10)
   trauma = models.CharField(max_length=100)
   location = models.CharField(max_length=100)
   scans = models.CharField(max_length=100)
@@ -31,6 +32,7 @@ class Physio_Form(models.Model):
   medication = models.CharField(max_length=100)
   work = models.CharField(max_length=100)
   goals = models.CharField(max_length=100)
+  treatment_complete = models.BooleanField(default=False)
   user = models.ForeignKey(User, on_delete=models.CASCADE)
 
 class Treatment(models.Model):
