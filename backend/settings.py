@@ -36,7 +36,10 @@ SECRET_KEY = 'django-insecure-71!vy)i$*x1&r%mry25g9xaq(kylg04%f9x-&h)1)e+dd0a0!=
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = [
+    'physio-backend-production.up.railway.app',
+    'physio-backend.railway.internal'
+]
 
 
 # Application definition
