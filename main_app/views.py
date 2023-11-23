@@ -1,6 +1,6 @@
 from django.contrib.auth.models import User
 from .models import Physio_Form, Treatment
-from rest_framework import viewsets, permissions, generics
+from rest_framework import viewsets, permissions, generics, serializers
 from rest_framework.generics import ListAPIView
 from rest_framework.response import Response
 from rest_framework import status
@@ -8,6 +8,9 @@ from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework.permissions import IsAuthenticated
 from .serializers import UserSerializer, Physio_FormSerializer, TreatmentSerializer
+from datetime import datetime, timedelta
+from django.utils import timezone
+
 
 class UserViewSet(viewsets.ReadOnlyModelViewSet):
     queryset = User.objects.all().order_by('-date_joined')
@@ -23,16 +26,15 @@ class HomeView(APIView):
 
 
 class LogoutView(APIView):
-     permission_classes = (IsAuthenticated,)
-     def post(self, request):
-          
-          try:
-               refresh_token = request.data["refresh_token"]
-               token = RefreshToken(refresh_token)
-               token.blacklist()
-               return Response(status=status.HTTP_205_RESET_CONTENT)
-          except Exception as e:
-               return Response(status=status.HTTP_400_BAD_REQUEST)
+    permission_classes = (IsAuthenticated,)
+    def post(self, request):
+        try:
+            refresh_token = request.body["refresh_token"]
+            token = RefreshToken(refresh_token)
+            token.blacklist()
+            return Response(status=status.HTTP_205_RESET_CONTENT)
+        except Exception as e:
+            return Response(status=status.HTTP_500_INTERNAL_SERVER_ERROR)
 
 class CreateUser(generics.CreateAPIView):
     queryset = User.objects.all()
@@ -58,7 +60,14 @@ class Physio_FormAddViewSet(viewsets.ModelViewSet):
     permission_classes = [permissions.IsAuthenticated]
     
     def perform_create(self, serializer):
-        serializer.save(treatment_complete=False)
+        user = self.request.user
+        last_month = timezone.now() - timedelta(days=30)  # Assuming a month is approximately 30 days
+
+        # Check if the user has submitted a form within the last month
+        if Physio_Form.objects.filter(user=user, date__gte=last_month).exists():
+            raise serializers.ValidationError("You can only submit one Physio_Form per month.")
+
+        serializer.save(treatment_complete=False, user=user)
 
 class Physio_FormUpdateViewSet(viewsets.ModelViewSet):
     queryset = Physio_Form.objects.all()
