@@ -21,6 +21,7 @@ area = (
 # Create your models here.  
 class Physio_Form(models.Model):
   date = models.DateField(auto_now_add=True)
+  name = models.CharField(max_length=100)
   body_part = models.CharField(max_length=100)
   time = models.CharField(max_length=10)
   trauma = models.CharField(max_length=100)
