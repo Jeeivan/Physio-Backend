@@ -24,7 +24,7 @@ class Physio_Form(models.Model):
   name = models.CharField(max_length=100)
   age = models.IntegerField()
   body_part = models.CharField(max_length=100)
-  time = models.CharField(max_length=10)
+  time = models.CharField(max_length=15)
   trauma = models.CharField(max_length=100)
   location = models.CharField(max_length=100)
   scans = models.CharField(max_length=100)
