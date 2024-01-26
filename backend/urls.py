@@ -30,6 +30,8 @@ router.register(r'treatmentsadd', views.TreatmentAddViewSet, basename="addtreatm
 router.register(r'treatmentsdelete', views.TreatmentDeleteViewSet, basename="deletetreatment")
 router.register(r'treatmentsupdate', views.TreatmentUpdateViewSet, basename="updatetreatment")
 router.register(r'treatments', views.TreatmentViewSet, basename="treatment")
+router.register(r'discussionadd', views.DiscussionAddViewSet, basename="adddiscussion")
+router.register(r'discussion', views.DiscussionViewSet, basename="discussion")
 
 urlpatterns = [
     path('admin/', admin.site.urls),

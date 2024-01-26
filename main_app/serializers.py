@@ -1,6 +1,6 @@
 from django.contrib.auth.models import User
 from rest_framework import serializers 
-from .models import Physio_Form, Treatment
+from .models import Physio_Form, Treatment, Discussion
 import django.contrib.auth.password_validation as validation
 from django.contrib.auth.hashers import make_password
 from django.core.exceptions import ValidationError
@@ -36,4 +36,9 @@ class Physio_FormSerializer(serializers.HyperlinkedModelSerializer):
 class TreatmentSerializer(serializers.ModelSerializer):
     class Meta:
         model = Treatment
+        fields = '__all__'
+
+class DiscussionSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Discussion
         fields = '__all__'

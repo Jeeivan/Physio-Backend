@@ -41,3 +41,8 @@ class Treatment(models.Model):
   date = models.DateField(auto_now_add=True)
   response = models.CharField()
   physio_form_id = models.ForeignKey(Physio_Form, on_delete=models.CASCADE)
+
+class Discussion(models.Model):
+  date = models.DateField(auto_now_add=True)
+  message = models.CharField()
+  user = models.ForeignKey(User, on_delete=models.CASCADE)

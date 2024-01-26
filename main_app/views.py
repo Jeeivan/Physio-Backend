@@ -1,5 +1,5 @@
 from django.contrib.auth.models import User
-from .models import Physio_Form, Treatment
+from .models import Physio_Form, Treatment, Discussion
 from rest_framework import viewsets, permissions, generics, serializers
 from rest_framework.generics import ListAPIView
 from rest_framework.response import Response
@@ -7,7 +7,7 @@ from rest_framework import status
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework.permissions import IsAuthenticated
-from .serializers import UserSerializer, Physio_FormSerializer, TreatmentSerializer
+from .serializers import UserSerializer, Physio_FormSerializer, TreatmentSerializer, DiscussionSerializer
 from datetime import datetime, timedelta
 from django.utils import timezone
 
@@ -124,4 +124,17 @@ class TreatmentUpdateViewSet(viewsets.ModelViewSet):
     permission_classes = [permissions.IsAuthenticated]
 
     def perform_update(self, serializer):
+        serializer.save()
+
+class DiscussionViewSet(viewsets.ReadOnlyModelViewSet):
+    queryset = Discussion.objects.all()
+    serializer_class = DiscussionSerializer
+    # permission_classes = [permissions.IsAuthenticated]
+
+class DiscussionAddViewSet(viewsets.ModelViewSet):
+    queryset = Discussion.objects.all()
+    serializer_class = DiscussionSerializer
+    permission_classes = [permissions.IsAuthenticated]
+
+    def perform_create(self, serializer):
         serializer.save()
