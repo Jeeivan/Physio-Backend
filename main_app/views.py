@@ -134,7 +134,7 @@ class DiscussionViewSet(viewsets.ReadOnlyModelViewSet):
 class DiscussionAddViewSet(viewsets.ModelViewSet):
     queryset = Discussion.objects.all()
     serializer_class = DiscussionSerializer
-    permission_classes = [permissions.IsAuthenticated]
+    # permission_classes = [permissions.IsAuthenticated]
 
     def perform_create(self, serializer):
         serializer.save()
