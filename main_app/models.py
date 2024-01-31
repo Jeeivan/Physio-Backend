@@ -45,4 +45,5 @@ class Treatment(models.Model):
 class Discussion(models.Model):
   date = models.DateField(auto_now_add=True)
   message = models.CharField()
+  name = models.CharField()
   # user = models.ForeignKey(User, on_delete=models.CASCADE)
